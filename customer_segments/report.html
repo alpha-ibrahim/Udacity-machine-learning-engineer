@@ -14825,8 +14825,10 @@ b1AcIW6hIwAAAABJRU5ErkJggg==
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<p><strong>Answer:</strong>
-Looking at the graph above, one can see that there seem to be a linear relation ship between "Grocery" and "Detergents_Paper." "Milk" and "Grocery" also seem to be fairly correlated. The data for those features seem to follow a log-normal distribution since most of the point lie near the origin.</p>
+<p><strong>Answer:</strong></p>
+<p>Looking at the graph above, one can see that there seem to be a linear relationship between "Grocery" and "Detergents_Paper" and "Milk" and "Detergents_Paper." "Milk" and "Grocery" also seem to be fairly correlated.</p>
+<p>The data for those features seem to follow a log-normal distribution since most of the point lie near the origin (Skewed right).</p>
+<p>This confirm my suspicions about the relevance of "Detergents_Paper." In other words, this feature is not necessary for identifying customers' spending habits since it is fairly correlated with the other features.</p>
 
 </div>
 </div>
@@ -26499,8 +26501,8 @@ Once you have performed this implementation, the dataset will be stored in the v
     
     <span class="k">print</span> <span class="s2">&quot;Actual values data points considered outliers for the feature &#39;{}&#39;:&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">feature</span><span class="p">)</span>
     <span class="n">display</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">exp</span><span class="p">(</span><span class="n">log_data</span><span class="p">[</span><span class="o">~</span><span class="p">((</span><span class="n">log_data</span><span class="p">[</span><span class="n">feature</span><span class="p">]</span> <span class="o">&gt;=</span> <span class="n">Q1</span> <span class="o">-</span> <span class="n">step</span><span class="p">)</span> <span class="o">&amp;</span> <span class="p">(</span><span class="n">log_data</span><span class="p">[</span><span class="n">feature</span><span class="p">]</span> <span class="o">&lt;=</span> <span class="n">Q3</span> <span class="o">+</span> <span class="n">step</span><span class="p">))]))</span>
-    <span class="c1">#outliers_index = outliers_index + log_data[~((log_data[feature] &gt;= Q1 - step) &amp; (log_data[feature] &lt;= Q3 + step))].index.tolist()</span>
-    <span class="c1">#print outliers_index</span>
+    <span class="n">outliers_index</span> <span class="o">=</span> <span class="n">outliers_index</span> <span class="o">+</span> <span class="n">log_data</span><span class="p">[</span><span class="o">~</span><span class="p">((</span><span class="n">log_data</span><span class="p">[</span><span class="n">feature</span><span class="p">]</span> <span class="o">&gt;=</span> <span class="n">Q1</span> <span class="o">-</span> <span class="n">step</span><span class="p">)</span> <span class="o">&amp;</span> <span class="p">(</span><span class="n">log_data</span><span class="p">[</span><span class="n">feature</span><span class="p">]</span> <span class="o">&lt;=</span> <span class="n">Q3</span> <span class="o">+</span> <span class="n">step</span><span class="p">))]</span><span class="o">.</span><span class="n">index</span><span class="o">.</span><span class="n">tolist</span><span class="p">()</span>
+    <span class="k">print</span> <span class="n">outliers_index</span>
     
 <span class="c1"># OPTIONAL: Select the indices for data points you wish to remove</span>
 <span class="c1">#outliers  = outliers_index</span>
@@ -26870,7 +26872,8 @@ Once you have performed this implementation, the dataset will be stored in the v
 
 <div class="output_area"><div class="prompt"></div>
 <div class="output_subarea output_stream output_stdout output_text">
-<pre>Data points considered outliers for the feature &#39;Milk&#39;:
+<pre>[65, 66, 81, 95, 96, 128, 171, 193, 218, 304, 305, 338, 353, 355, 357, 412]
+Data points considered outliers for the feature &#39;Milk&#39;:
 </pre>
 </div>
 </div>
@@ -27004,7 +27007,8 @@ Once you have performed this implementation, the dataset will be stored in the v
 
 <div class="output_area"><div class="prompt"></div>
 <div class="output_subarea output_stream output_stdout output_text">
-<pre>Data points considered outliers for the feature &#39;Grocery&#39;:
+<pre>[65, 66, 81, 95, 96, 128, 171, 193, 218, 304, 305, 338, 353, 355, 357, 412, 86, 98, 154, 356]
+Data points considered outliers for the feature &#39;Grocery&#39;:
 </pre>
 </div>
 </div>
@@ -27102,7 +27106,8 @@ Once you have performed this implementation, the dataset will be stored in the v
 
 <div class="output_area"><div class="prompt"></div>
 <div class="output_subarea output_stream output_stdout output_text">
-<pre>Data points considered outliers for the feature &#39;Frozen&#39;:
+<pre>[65, 66, 81, 95, 96, 128, 171, 193, 218, 304, 305, 338, 353, 355, 357, 412, 86, 98, 154, 356, 75, 154]
+Data points considered outliers for the feature &#39;Frozen&#39;:
 </pre>
 </div>
 </div>
@@ -27344,7 +27349,8 @@ Once you have performed this implementation, the dataset will be stored in the v
 
 <div class="output_area"><div class="prompt"></div>
 <div class="output_subarea output_stream output_stdout output_text">
-<pre>Data points considered outliers for the feature &#39;Detergents_Paper&#39;:
+<pre>[65, 66, 81, 95, 96, 128, 171, 193, 218, 304, 305, 338, 353, 355, 357, 412, 86, 98, 154, 356, 75, 154, 38, 57, 65, 145, 175, 264, 325, 420, 429, 439]
+Data points considered outliers for the feature &#39;Detergents_Paper&#39;:
 </pre>
 </div>
 </div>
@@ -27442,7 +27448,8 @@ Once you have performed this implementation, the dataset will be stored in the v
 
 <div class="output_area"><div class="prompt"></div>
 <div class="output_subarea output_stream output_stdout output_text">
-<pre>Data points considered outliers for the feature &#39;Delicatessen&#39;:
+<pre>[65, 66, 81, 95, 96, 128, 171, 193, 218, 304, 305, 338, 353, 355, 357, 412, 86, 98, 154, 356, 75, 154, 38, 57, 65, 145, 175, 264, 325, 420, 429, 439, 75, 161]
+Data points considered outliers for the feature &#39;Delicatessen&#39;:
 </pre>
 </div>
 </div>
@@ -27754,6 +27761,13 @@ Once you have performed this implementation, the dataset will be stored in the v
 
 </div>
 
+<div class="output_area"><div class="prompt"></div>
+<div class="output_subarea output_stream output_stdout output_text">
+<pre>[65, 66, 81, 95, 96, 128, 171, 193, 218, 304, 305, 338, 353, 355, 357, 412, 86, 98, 154, 356, 75, 154, 38, 57, 65, 145, 175, 264, 325, 420, 429, 439, 75, 161, 66, 109, 128, 137, 142, 154, 183, 184, 187, 203, 233, 285, 289, 343]
+</pre>
+</div>
+</div>
+
 </div>
 </div>
 
@@ -27761,6 +27775,81 @@ Once you have performed this implementation, the dataset will be stored in the v
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
 <div class="prompt input_prompt">In&nbsp;[10]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython2"><pre><span></span><span class="kn">from</span> <span class="nn">collections</span> <span class="kn">import</span> <span class="n">Counter</span>
+<span class="n">cnt</span> <span class="o">=</span> <span class="n">Counter</span><span class="p">()</span>
+<span class="k">for</span> <span class="n">index</span> <span class="ow">in</span> <span class="n">outliers_index</span><span class="p">:</span>
+    <span class="n">cnt</span><span class="p">[</span><span class="n">index</span><span class="p">]</span> <span class="o">+=</span> <span class="mi">1</span>
+    
+<span class="n">cnt</span>
+</pre></div>
+
+</div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area"><div class="prompt output_prompt">Out[10]:</div>
+
+
+<div class="output_text output_subarea output_execute_result">
+<pre>Counter({38: 1,
+         57: 1,
+         65: 2,
+         66: 2,
+         75: 2,
+         81: 1,
+         86: 1,
+         95: 1,
+         96: 1,
+         98: 1,
+         109: 1,
+         128: 2,
+         137: 1,
+         142: 1,
+         145: 1,
+         154: 3,
+         161: 1,
+         171: 1,
+         175: 1,
+         183: 1,
+         184: 1,
+         187: 1,
+         193: 1,
+         203: 1,
+         218: 1,
+         233: 1,
+         264: 1,
+         285: 1,
+         289: 1,
+         304: 1,
+         305: 1,
+         325: 1,
+         338: 1,
+         343: 1,
+         353: 1,
+         355: 1,
+         356: 1,
+         357: 1,
+         412: 1,
+         420: 1,
+         429: 1,
+         439: 1})</pre>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[11]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython2"><pre><span></span><span class="k">print</span> <span class="s2">&quot;Dimension before removing outliers&quot;</span><span class="p">,</span> <span class="n">log_data</span><span class="o">.</span><span class="n">shape</span>
@@ -27802,8 +27891,9 @@ Dimension after removing outliers (438, 6)
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<p><strong>Answer:</strong>
-Yes, there are points that were considered outliers for more than one feature. However, not all these points should be remove. The actual value (non log transformed) of the points considered outliers are also display above. If we look at the dimensions in isolation, then it would make sense to consider these points as outliers. But if we look at the amounts spent on all the different products, one realizes that these "outliers" could be representing establishments with different needs. For example, a coffee shop might spend a significant amount on Milk and groceries, but not so much on Fresh product and delicatessen. Whereas a fruit and veg store might spend a lot on Fresh and Frozen products, but not so much on Milk, Groceries, delicatessen and detergent.</p>
+<p><strong>Answer:</strong></p>
+<p>Yes, there are five points that were considered outliers for more than one feature .These are the rows indexed by 65, 66, 75, 128 and 154. However, not all these points should be removed. The actual value (non log transformed) of the points considered outliers are also display above. If we look at the dimensions in isolation, then it would make sense to consider these points as outliers. But if we look at the amounts spent on all the different products, one realizes that these "outliers" could be representing establishments with different needs. For example, a coffee shop might spend a significant amount on Milk and groceries, but not so much on Fresh product and delicatessen. Whereas a fruit and veg store might spend a lot on Fresh and Frozen products, but not so much on Milk, Groceries, delicatessen and detergent.</p>
+<p>Furthermore, given that there are only 440 sample in the dataset, it wouldn't be a good idea to remove all these outliers.</p>
 <p>The only points that I consider outliers are those index by 98 and 154 (display in the cell below). We see that the values spent on the different products are consistently low.</p>
 
 </div>
@@ -27811,7 +27901,7 @@ Yes, there are points that were considered outliers for more than one feature. H
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[11]:</div>
+<div class="prompt input_prompt">In&nbsp;[12]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython2"><pre><span></span><span class="n">data</span><span class="o">.</span><span class="n">iloc</span><span class="p">[[</span><span class="mi">154</span><span class="p">,</span> <span class="mi">98</span><span class="p">]]</span>
@@ -27826,7 +27916,7 @@ Yes, there are points that were considered outliers for more than one feature. H
 <div class="output">
 
 
-<div class="output_area"><div class="prompt output_prompt">Out[11]:</div>
+<div class="output_area"><div class="prompt output_prompt">Out[12]:</div>
 
 <div class="output_html rendered_html output_subarea output_execute_result">
 <div>
@@ -27899,7 +27989,7 @@ Yes, there are points that were considered outliers for more than one feature. H
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[12]:</div>
+<div class="prompt input_prompt">In&nbsp;[13]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython2"><pre><span></span><span class="c1"># TODO: Apply PCA by fitting the good data with the same number of dimensions as features</span>
@@ -28512,7 +28602,10 @@ t/7+KAAAAABJRU5ErkJggg==
 <div class="text_cell_render border-box-sizing rendered_html">
 <p><strong>Answer:</strong></p>
 <p>The first and the second principal components explain 71.29% of the variance in the data whereas 93% of the variance is explained by the first four principal components.</p>
-<p>The first four dimensions best represent the amounts spent on Detergent_Paper, Fresh, Frozen and Delicatessen since they are mostly correlated with those features. The First dimension is strongly correlated with Detergent_Paper. As the amount spent on Detergent_Paper increases, that dimensions increases. It can also be seen that the third and fourth dimensions are strongly correlated with Fresh and Frozen respectively. The third and fourth dimensions are negatively correlated with the amount spent on Delicatessen.</p>
+<p>The first dimension is positively correlated with Detergent_Paper, Milk and Grocery. This suggests that these three variables vary together. It is also negatively correlated with Fresh and Frozen. This component could represents items that retailers usually by together.</p>
+<p>The second component is made up of a large positive weights in Fresh, Frozen and Delicatessen. This component might represent the spending pattern of establishments like restaurants.</p>
+<p>The third component is made up of a large positive weight in Fresh and a large negative weight in Delicatessen. I could represent the spending pattern of establishments that spend a large amount on Fresh products but don't spend on Delicatessen. An example of this might be a Fruit and vegetable store.</p>
+<p>The Fourth component is made up of a large positive weight in Frozen and a large negative weight in Delicatessen. I could represent the spending pattern of establishments that spend a large amount on Frozen products but don't spend on Delicatessen.</p>
 
 </div>
 </div>
@@ -28529,7 +28622,7 @@ t/7+KAAAAABJRU5ErkJggg==
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[13]:</div>
+<div class="prompt input_prompt">In&nbsp;[14]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython2"><pre><span></span><span class="c1"># Display sample log-data after having a PCA transformation applied</span>
@@ -28617,7 +28710,7 @@ t/7+KAAAAABJRU5ErkJggg==
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[14]:</div>
+<div class="prompt input_prompt">In&nbsp;[15]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython2"><pre><span></span><span class="c1"># TODO: Apply PCA by fitting the good data with only two dimensions</span>
@@ -28651,7 +28744,7 @@ t/7+KAAAAABJRU5ErkJggg==
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[15]:</div>
+<div class="prompt input_prompt">In&nbsp;[16]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython2"><pre><span></span><span class="c1"># Display sample log-data after applying PCA transformation in two dimensions</span>
@@ -28718,7 +28811,7 @@ t/7+KAAAAABJRU5ErkJggg==
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[16]:</div>
+<div class="prompt input_prompt">In&nbsp;[17]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython2"><pre><span></span><span class="c1"># Create a biplot</span>
@@ -28733,11 +28826,11 @@ t/7+KAAAAABJRU5ErkJggg==
 <div class="output">
 
 
-<div class="output_area"><div class="prompt output_prompt">Out[16]:</div>
+<div class="output_area"><div class="prompt output_prompt">Out[17]:</div>
 
 
 <div class="output_text output_subarea output_execute_result">
-<pre>&lt;matplotlib.axes._subplots.AxesSubplot at 0x7f5cd1e3a910&gt;</pre>
+<pre>&lt;matplotlib.axes._subplots.AxesSubplot at 0x7fc315375410&gt;</pre>
 </div>
 
 </div>
@@ -30484,7 +30577,7 @@ SZIkSZIaymBIkiRJkiSpoQyGJEmSJEmSGspgSJIkSZIkqaH+P9xLIQp2LtnbAAAAAElFTkSuQmCC
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[17]:</div>
+<div class="prompt input_prompt">In&nbsp;[18]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython2"><pre><span></span><span class="kn">from</span> <span class="nn">sklearn.cluster</span> <span class="kn">import</span> <span class="n">KMeans</span>
@@ -31943,8 +32036,8 @@ DIEkSZIkSZK6wP8PES6beYoGE6AAAAAASUVORK5CYII=
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p><strong>Answer:</strong></p>
-<p>Customer segments represented by Segment 0 spend a significant amount on Fresh products, milk, grocery and frozen products, but not so much on detergents_paper and delicatessen. This could be a restaurant since they spend a large amount on products required in food preparation.</p>
-<p>Customer segments represented by Segment 1 could be retailers given that the total spent on grocery and delicatessen and detergent_paper is just above the mean of the data set.</p>
+<p>Although customer segments represented by Segment 0 spend an amount that is smaller that the mean of the dataset on all the product, they spend a larger amount (closer to the mean of the dataset) on Fresh products, milk, grocery and frozen products than they do on detergents_paper and delicatessen. This could be a restaurant since they spend a larger amount on products required in food preparation.</p>
+<p>Customer segments represented by Segment 1 could be retailers given that the total spent on grocery, Milk and  detergent_paper is just above the mean of the data set and the amount spent on Delicatessen is closer to the mean of the dataset.</p>
 
 </div>
 </div>
@@ -31996,8 +32089,10 @@ Sample point 2 predicted to be in Cluster 0
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<p><strong>Answer:</strong>
-Sample point 2 is best represented by Segment 0 whereas points 0 and 1 are best represented by Segment 1. This is what the model predict as well.</p>
+<p><strong>Answer:</strong></p>
+<p>The total spent by point 0 on Grocery and Delicatessen and Detergent_paper is just above the mean of the data set. This point is best suited for Segment 1 since this spending pattern is similar to that of the representative point of that cluster identified in question 8.</p>
+<p>The sample point 1 spend a an amount that is significantly above the mean on Fresh products, milk, grocery and delicatessen. It also spend an amount that is just above the mean on frozen products and detergents_paper. This spending pattern is similar to that of the representative point of that cluster 1. It is there best represented by Segment 1.</p>
+<p>Sample point 2 is best represented by Segment 0 since the total spent on Fresh and Grocery is above the mean and the amount spent on Frozen products is just under the mean. Furthermore, it doesn't spend that much on detergents_paper and delicatessen.</p>
 
 </div>
 </div>
@@ -32038,6 +32133,11 @@ Sample point 2 is best represented by Segment 0 whereas points 0 and 1 are best 
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p><strong>Answer:</strong></p>
+<p>We can use A/B testing here to compare the effects of the change in the delivering service. We can achieve this by dividing the customer base into two groups:</p>
+<ul>
+<li>the control group - for which we use the usual delivery service </li>
+<li>the variation group - for which we use the modified delivery service</li>
+</ul>
 <p>Given that we have identified that the two types of customers are</p>
 <ul>
 <li><p>Segment 0: Those spending a significant amount on Fresh products, milk, grocery and frozen products, but not so much on detergents_paper and delicatessen.</p>
@@ -32045,8 +32145,16 @@ Sample point 2 is best represented by Segment 0 whereas points 0 and 1 are best 
 <li><p>Segment 1: Those spending a significant amount on grocery and delicatessen and detergent_paper</p>
 </li>
 </ul>
-<p>We can deduce that customers in segment 0 will be more affected by the change since they will most likely need regular deliveries given the nature of the products they order.</p>
-<p>Customers in segment 0 however spend a large amount on grocery and delicatessen and detergent_paper. These are most likely establishments that can store products for a longer period of time like a retailer. They will therefore be less affected by the change and will be more likely to react positively.</p>
+<p>I suspect that customers in segment 0 will be more affected by the change since they will most likely need regular deliveries given the nature of the products they order.</p>
+<p>Customers in segment 0 however spend a large amount on grocery and delicatessen and detergent_paper. These are most likely establishments that can store products for a longer period of time like a retailer. They will will probably be less affected by the change and will be more likely to react positively.</p>
+<p>In order to confirm which segment will be most affected, I will divide each of the segments into a control and variation groups. I will then endup with four different groups:</p>
+<ul>
+<li>Segment 0 - control</li>
+<li>Segment 0 - variation</li>
+<li>Segment 1 - control</li>
+<li>Segment 1 - variation</li>
+</ul>
+<p>I will then use the usual delivery service with the control group and the modified delivery service with the variation group. The result of this A/B test should tell us which group of customers is affected the most.</p>
 
 </div>
 </div>
