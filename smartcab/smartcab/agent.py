@@ -39,6 +39,11 @@ class LearningAgent(Agent):
         # Update epsilon using a decay function of your choice
         # Update additional class parameters as needed
         # If 'testing' is True, set epsilon and alpha to 0
+        if testing == True:
+        	self .epsilon = 0
+        	self.alpha = 0
+        else:	
+        	self.epsilon = self.epsilon - 0.05
 
         return None
 
@@ -60,8 +65,7 @@ class LearningAgent(Agent):
         #   If it is not, create a dictionary in the Q-table for the current 'state'
         #   For each action, set the Q-value for the state-action pair to 0
         
-        #state = {'waypoint': 'left', 'inputs': {'light': 'green', 'oncoming': 'left', 'left': None, 'right': None}, 'deadline': 20}
-        state = ('left', 'green', 'left', 'left',  'right')
+        state = (waypoint,inputs['light'],inputs['left'], inputs['left'],inputs['oncoming'], deadline)
 
         return state
 
@@ -89,6 +93,8 @@ class LearningAgent(Agent):
         # When learning, check if the 'state' is not in the Q-table
         # If it is not, create a new dictionary for that state
         #   Then, for each action available, set the initial Q-value to 0.0
+        if self.Q[state] == None:
+        	self.Q[state] = {[self.planner.next_waypoint()], 0.0}
 
         return
 
