@@ -8,7 +8,7 @@ class LearningAgent(Agent):
     """ An agent that learns to drive in the Smartcab world.
         This is the object you will be modifying. """ 
 
-    def __init__(self, env, learning=False, epsilon=1.0, alpha=0.5):
+    def __init__(self, env, learning=True, epsilon=1.0, alpha=0.5):
         super(LearningAgent, self).__init__(env)     # Set the agent in the evironment 
         self.planner = RoutePlanner(self.env, self)  # Create a route planner
         self.valid_actions = self.env.valid_actions  # The set of valid actions
@@ -70,7 +70,7 @@ class LearningAgent(Agent):
         #   If it is not, create a dictionary in the Q-table for the current 'state'
         #   For each action, set the Q-value for the state-action pair to 0
         
-        state = (waypoint,inputs['light'],inputs['oncoming'])
+        state = (waypoint,inputs['light'],inputs['left'],inputs['oncoming'])
 
         return state
 
@@ -99,12 +99,13 @@ class LearningAgent(Agent):
         # If it is not, create a new dictionary for that state
         #   Then, for each action available, set the initial Q-value to 0.0
     
-        if self.Q.get(state) == None:
-        	self.Q[state] = {}
-        	for action in self.valid_actions:
-        		print action
-        		self.Q[state][action] = 0.0
-        print "########## Q", self.Q[state].values() 
+        if self.learning:
+        	if self.Q.get(state) == None:
+        		self.Q[state] = {}
+        		for action in self.valid_actions:
+        			print action
+        			self.Q[state][action] = 0.0
+        	print "########## Q", self.Q[state].values() 
 
         return
 
@@ -149,7 +150,8 @@ class LearningAgent(Agent):
         ###########
         # When learning, implement the value iteration update rule
         #   Use only the learning rate 'alpha' (do not use the discount factor 'gamma')
-        self.Q[state][action] = self.Q[state][action] + self.alpha * (reward - self.Q[state][action])
+        if self.learning:
+        	self.Q[state][action] += self.alpha * (reward - self.Q[state][action])
 
         return
 
